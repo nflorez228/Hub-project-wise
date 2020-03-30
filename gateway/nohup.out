@@ -1,0 +1,75 @@
+inicia el socket
+socket creado: *:*
+inicia el socket
+socket creado: *:*
+[08-31-16_15:55:11.609] [LOG]   a user connected
+[08-31-16_15:55:12.132] [LOG]   { username: 'bewise', password: 'bewise' }
+[08-31-16_15:55:12.176] [LOG]   estado Results: false
+[08-31-16_15:55:12.276] [LOG]   info de Usuario:{"usrlg":1,"user":"bewise","pass":"bewise","_id":"yBiFnMxshvrxMNEt"}
+[08-31-16_15:55:12.278] [LOG]   EXITO EN LOGIN POR BASE DE DATOS!
+[08-31-16_15:55:18.245] [LOG]   le llego authenticated
+[08-31-16_15:55:18.247] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_15:55:18.300] [LOG]   cun puesto: Ga7dNBLC1F{yAEo
+[08-31-16_15:55:18.334] [LOG]   Update Nodes from connection
+[08-31-16_15:55:18.343] [LOG]   le llego authenticated
+[08-31-16_15:55:18.346] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_15:55:18.363] [LOG]   cun puesto: Ga7dNBLC1F{yAEo
+[08-31-16_15:55:18.384] [LOG]   Update Nodes from connection
+inicia el socket
+socket creado: *:*
+[08-31-16_16:18:09.626] [LOG]   a user connected
+[08-31-16_16:18:10.135] [LOG]   { username: 'bewise', password: 'bewise' }
+[08-31-16_16:18:10.180] [LOG]   estado Results: false
+[08-31-16_16:18:10.281] [LOG]   info de Usuario:{"usrlg":1,"user":"bewise","pass":"bewise","_id":"yBiFnMxshvrxMNEt"}
+[08-31-16_16:18:10.283] [LOG]   EXITO EN LOGIN POR BASE DE DATOS!
+[08-31-16_16:18:16.304] [LOG]   le llego authenticated
+[08-31-16_16:18:16.309] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_16:18:16.404] [LOG]   cun puesto: 8fzxyN,HhVFRRts
+[08-31-16_16:18:16.465] [LOG]   Update Nodes from connection
+[08-31-16_16:18:16.475] [LOG]   le llego authenticated
+[08-31-16_16:18:16.480] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_16:18:16.512] [LOG]   cun puesto: 8fzxyN,HhVFRRts
+[08-31-16_16:18:16.547] [LOG]   Update Nodes from connection
+[08-31-16_16:18:16.566] [LOG]   le llego authenticated
+[08-31-16_16:18:16.567] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_16:18:16.578] [LOG]   cun puesto: 8fzxyN,HhVFRRts
+[08-31-16_16:18:16.590] [LOG]   Update Nodes from connection
+esta abierto: false
+[08-31-16_18:15:20.261] [LOG]   port open. Data rate: 115200 port open?:true
+[08-31-16_18:15:20.290] [LOG]   puerto abierto
+[08-31-16_18:15:27.078] [LOG]   a user connected
+[08-31-16_18:15:27.648] [LOG]   { username: 'bewise', password: 'bewise' }
+[08-31-16_18:15:27.685] [LOG]   estado Results: false
+[08-31-16_18:15:27.741] [LOG]   info de Usuario:{"usrlg":1,"user":"bewise","pass":"bewise","_id":"yBiFnMxshvrxMNEt"}
+[08-31-16_18:15:27.743] [LOG]   EXITO EN LOGIN POR BASE DE DATOS!
+[08-31-16_18:15:33.237] [LOG]   le llego authenticated
+[08-31-16_18:15:33.240] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_18:15:33.268] [LOG]   cun puesto: qO[jyDah,bizLKh
+[08-31-16_18:15:33.477] [LOG]   Update Nodes from connection
+[08-31-16_18:15:33.878] [LOG]   le llego authenticated
+[08-31-16_18:15:33.881] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_18:15:33.945] [LOG]   cun puesto: qO[jyDah,bizLKh
+[08-31-16_18:15:33.998] [LOG]   Update Nodes from connection
+[08-31-16_18:15:34.009] [LOG]   le llego authenticated
+[08-31-16_18:15:34.013] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_18:15:34.042] [LOG]   cun puesto: qO[jyDah,bizLKh
+[08-31-16_18:15:34.082] [LOG]   Update Nodes from connection
+[08-31-16_18:15:34.132] [LOG]   le llego authenticated
+[08-31-16_18:15:34.136] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_18:15:34.167] [LOG]   cun puesto: qO[jyDah,bizLKh
+[08-31-16_18:15:34.192] [LOG]   Update Nodes from connection
+[08-31-16_18:15:34.197] [LOG]   le llego authenticated
+[08-31-16_18:15:34.199] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_18:15:34.217] [LOG]   cun puesto: qO[jyDah,bizLKh
+[08-31-16_18:15:34.231] [LOG]   Update Nodes from connection
+[08-31-16_18:15:34.252] [LOG]   le llego authenticated
+[08-31-16_18:15:34.254] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_18:15:34.262] [LOG]   cun puesto: qO[jyDah,bizLKh
+[08-31-16_18:15:34.275] [LOG]   Update Nodes from connection
+[08-31-16_18:15:34.287] [LOG]   le llego authenticated
+[08-31-16_18:15:34.289] [LOG]   NEW CONNECTION FROM 127.0.0.1
+[08-31-16_18:15:34.299] [LOG]   cun puesto: qO[jyDah,bizLKh
+[08-31-16_18:15:34.310] [LOG]   Update Nodes from connection
+esta abierto: false
+[08-31-16_18:25:59.060] [LOG]   port open. Data rate: 115200 port open?:true
+[08-31-16_18:25:59.089] [LOG]   puerto abierto

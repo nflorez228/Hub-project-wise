@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2e7416ce-d322-41bd-8c3a-2c71e94ff1d8" name="Bewise" url="http://en.bewise.com.co">
+        <fileTransfer host="en.bewise.com.co" port="60000" rootFolder="/home/pi" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="60000" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

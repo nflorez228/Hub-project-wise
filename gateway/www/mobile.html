@@ -1,0 +1,420 @@
+<!--html para movil,
+pasos para actualizar:
+1: quitarle el form para hacer login
+2: modificar el load de js en vez de index.js cambiarlo a indexMobile.js
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=.7, maximum-scale=0.7, user-scalable=no">
+    <title>BEWISE</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.11/slideout.min.js"></script>
+    <!--se encarga de el uso de las fechas, requerido para el datepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/locale/es.js"></script>
+    <!--Date/Time Picker -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet prefetch" href="http://fonts.googleapis.com/css?family=Roboto:100,300,400">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet prefetch" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+
+
+</head>
+
+<body>
+<nav id="menu">
+    <div id="menuDiv">
+        <div id="menuHeader">
+            <div id="menuBack"></div>
+            <div id="menuCircle"></div>
+            <div id="menuText">NOMBRE</div>
+        </div>
+        <div id="menuContent">Contenido por definir</div>
+        <div id="menuFooter">
+            <div id="btnConfig" class="btnCfg">Configurar</div>
+        </div>
+    </div>
+</nav>
+
+<main id="panel">
+
+    <div id="grayOut"></div>
+    <div class="screen-ctr">
+        <!-- content-->
+        <!-- nav-->
+        <div class="nav">
+            <div class="fab-ctr">
+                <div class="fab ion-gear-a" onClick="floatBut()" style="transform:scale(0)"></div>
+            </div>
+        </div>
+        <!-- ripple-->
+        <div class="ripple"></div>
+        <!-- links-->
+        <ul class="links">
+            <li class="ion-clipboard" id="openLog"></li>
+            <li class="home ion-home" onClick="goHome()"></li>
+            <li class="ion-wand"></li>
+            <li class="close ion-android-close" onClick="closefloatBut()"></li>
+        </ul>
+    </div>
+
+
+    <div class="wrapper" style="padding-bottom:100px;">
+
+        <!--inicia div de slide-->
+        <div id="backSlide">
+            <div id="slideBtn" class="ion-drag" style="opacity: 1"></div>
+        </div>
+        <!--termina div de slide-->
+
+
+        <!--inicia Div de detalles-->
+
+        <div class="detalles">
+            <div class="cardWrapper">
+                <div class="card">
+                    <div class="cardFace front">
+                        <!--Parte superior Header azul oscuro-->
+                        <div id="detallesHeader">
+                            <div class="divBatNodo"><span id="batNodo"></span></div>
+                            <div class="divRssiNodo"><span id="rssiNodo"></span></div>
+                            <div class="cerrarNodo ion-close-round"></div>
+                            <div class="divNodeType"><span id="nodeType">TipoNodo</span></div>
+                        </div>
+                        <div id="detallesContent">
+                            <!--contenido fondo blanco-->
+                            <div class="divNodeLabel"><input title="nodeLabel" type="text" id="nodeLabel" name="Label" value="Sin Label" readonly style="border:0"></div>
+                            <div class="divNodeDescr"><input title="nodeDescr" type="text" id="nodeDescr" name="Description" value="DescripciÃ³n" readonly style="border:0"></div>
+                            <div id="nodeControls"></div>
+                            <div id="notify"><input type="checkbox" id="noty"><label class="labelNoty" for="noty">Nofificar todos los Cambios de estado?</label></div>
+                        </div>
+                        <!--botones y edit azul claro-->
+                        <div id="detallesFooter">
+                            <div class="btnEvnt" id="divShowEvents">Eventos</div>
+                            <div class="divNodeLabelChange ion-edit" onClick="changeLabel()"></div>
+                            <div class="divSaveNodeLabelChange ion-checkmark-circled" onClick="saveChanges()"></div>
+                            <div class="deleteNode" id="deleteNode" align="center" style="opacity: 0;display: none"><b>Eliminar Nodo </b><div class="ion-close-round" align="center"></div></div>
+
+                        </div>
+                    </div>
+                    <div class="cardFace back">
+                        <ul class="listEvents">
+                            <li class="evento">No Hay Eventos Programados</li>
+                        </ul>
+                        <div id="eventosFooter">
+                            <button id="eventosVolver" class="btnEvento" type="button" onclick="unflipDetalles()">Volver</button>
+                            <button id="eventosCreate" class="btnEvento" type="button">Crear Evento</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--ventana de confirmación de eliminación del nodo -->
+        <div id="confirmDelete">
+            <div id="confirmDeleteHeader">Confirmación de Eliminación de nodo</div>
+            <div id="confirmDeleteContent">Estás Seguro que quieres eliminar el Nodo?</div>
+            <div id="confirmDeleteFooter">Confirmar</div>
+            <div id="cancelDeleteFooter">Cancelar</div>
+        </div>
+        <div id="divConfig">
+            <div id="divConfigHeader">Configura tu Servidor</div>
+            <div id="divConfigContent">
+                <div id="divConfigNombre">
+                    <label id="labelConfigNombre">Reconfigura el nombre de tu Servidor</label>
+                    <br>Nuevo Nombre:<br>
+                    <input type="text" title="Nuevo Nombre" id="newName" value="Ingresa nuevo nombre" style="margin-bottom: 10px">
+                    <div id="confirmConfigNombre" class="btnCfg">Confirmar</div>
+                </div>
+                <div id="divConfigPass">
+                    <label id="labelConfigPass">Reconfigura la contraseña</label>
+                    <br>Contraseña anterior:<br>
+                    <input type="text" title="Contraseña Antigua" id="oldPass" value="Ingresa Contraseña Anterior">
+                    <br>Contraseña Nueva:<br>
+                    <input type="text" title="Nueva Contraseña" id="newPass" value="Ingresa Nueva Contraseña" style="margin-bottom: 10px">
+                    <div id="confirmConfigPass" class="btnCfg">Confirmar</div>
+                </div>
+            </div>
+            <div id="divConfigFooter">Volver</div>
+        </div>
+        <div id="confirmDeleteEvent">
+            <div id="confirmDeleteEventHeader">Confirmación de Eliminación de Evento</div>
+            <div id="confirmDeleteEventContent">Estás Seguro que quieres eliminar el Evento?</div>
+            <div id="confirmDeleteEventFooter">Confirmar</div>
+            <div id="cancelDeleteEventFooter">Cancelar</div>
+        </div>
+        <!--ventana de Errores-->
+        <div id="errorDiv">
+            <div id="errorHeader">Lo sentimos pero encontramos un error</div>
+            <div id="errorContent">Por favor revisa los siguientes problemas
+                <ul id="errorList"></ul>
+            </div>
+            <div id="confirmErrorFooter" onclick="closeErrorDiv()">Volver</div>
+        </div>
+
+        <!--ventana de LOG-->
+        <div id="logDiv">
+            <div id="logHeader">Aqui encontrarás los últimos registros del HUB</div>
+            <div id="logContent">
+                <label for="LOGtext"></label><textarea readOnly id="LOGtext"></textarea>
+            </div>
+            <div id="confirmLogFooter" onclick="closeLogDiv()">Volver</div>
+        </div>
+
+        <!--ventana de creacion de eventos-->
+        <div id="createEvent">
+            <h1 id="eventTitle">Creador de Eventos</h1>
+
+            <div id=tabs>
+                <section class="tabs_wrapper">
+                    <ul class="tabs">
+                        <li class="active">Recursivos</li>
+                        <li>X</li>
+                    </ul>
+
+                    <ul class="tab__content">
+                        <li class="active">
+                            <div class="content__wrapper">
+                                <h2 class="text-color">Selecciona la Frecuencia de repeticiones que deseas</h2>
+                                <div id="creatorContent" align="center">
+
+                                    <div class="weekPicker">
+                                        <div class="weekOption">
+                                            <input type="checkbox" id="dow1" value="0">
+                                            <label for="dow1">D</label>
+                                        </div>
+                                        <div class="weekOption">
+                                            <input type="checkbox" id="dow2" value="1">
+                                            <label for="dow2">L</label>
+                                        </div>
+                                        <div class="weekOption">
+                                            <input type="checkbox" id="dow3" value="2">
+                                            <label for="dow3">M</label>
+                                        </div>
+                                        <div class="weekOption">
+                                            <input type="checkbox" id="dow4" value="3">
+                                            <label for="dow4">M</label>
+                                        </div>
+                                        <div class="weekOption">
+                                            <input type="checkbox" id="dow5" value="4">
+                                            <label for="dow5">J</label>
+                                        </div>
+                                        <div class="weekOption">
+                                            <input type="checkbox" id="dow6" value="5">
+                                            <label for="dow6">V</label>
+                                        </div>
+                                        <div class="weekOption">
+                                            <input type="checkbox" id="dow7" value="6">
+                                            <label for="dow7">S</label>
+                                        </div>
+                                    </div>
+                                    <h2 class="text-color">Selecciona la hora:</h2>
+                                    <input type="text" id="RecuTimeSelector" class="form-control" title="Selecciona la hora">
+                                    <h2 class="text-color">Selecciona la acción:</h2>
+                                    <select id="recuActionSelector" title="Selecciona la accion" class="ion-ios-arrow-down">
+                                        <option selected="selected">Este nodo no tiene Acciones disponibles</option>
+                                    </select>
+                                    <div id="notifyEventRecu"><input type="checkbox" id="notyEventRecu"><label class="labelNoty" for="notyEventRecu">Nofificar todos los Cambios de estado de este evento?</label></div>
+
+                                    <button class="buttonGen button-block" id="createRecurEvent" style="font-family: 'Titillium Web', sans-serif;">Crear Evento</button>
+                                    <button class="buttonGen button-block" id="cerrarCreateEventRe" style="font-family: 'Titillium Web', sans-serif;" onclick="closeDivCreateEvent()">Cerrar</button>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content__wrapper">
+                                <h2 class="text-color">Quieres que algo pase cuando otro nodo tenga una accion</h2>
+                                <h2 class="text-color">Selecciona la accion:</h2>
+                                <select id="conditActionSelector1" title="Selecciona la accion" class="ion-ios-arrow-down">
+                                    <option selected="selected">Este nodo no tiene Acciones disponibles</option>
+                                </select>
+                                <h2 class="text-color">Selecciona el nodo:</h2>
+                                <select id="conditNodeSelector" title="Selecciona el nodo" class="ion-ios-arrow-down">
+                                    <option selected="selected">No hay nodos Seleccionables</option>
+                                </select>
+                                <h2 class="text-color">Selecciona la accion:</h2>
+                                <select id="conditActionSelector2" title="Selecciona la accion" class="ion-ios-arrow-down">
+                                    <option selected="selected">Este nodo no tiene Acciones disponibles</option>
+                                </select>
+                                <div id="notifyEventCondit"><input type="checkbox" id="notyEventCondit"><label class="labelNoty" for="notyEventCondit">Nofificar todos los Cambios de estado de este evento?</label></div>
+                                <button class="buttonGen button-block" id="createConditEvent" style="font-family: 'Titillium Web', sans-serif;">Crear Evento</button>
+                                <button class="buttonGen button-block" id="cerrarCreateEventCon" style="font-family: 'Titillium Web', sans-serif;" onclick="closeDivCreateEvent()">Cerrar</button>
+
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+        </div>
+
+        <!--Termina div de Detalles-->
+
+
+
+        <div class="app" id="homepage" style="opacity:0">
+            <h1 id="titulocasa"><svg class="logo"></svg> My Home</h1>
+            <time class="time">10:00</time>
+            <ul class="widget"></ul>
+        </div>
+        <div class="footer" style="height:100px; bottom:1px;" >  </div>
+        <div class="load">
+            <div class="dot"></div>
+            <div class="outline"><span></span></div>
+        </div>
+        <!-- /form -->
+    </div>
+
+
+
+    <!----
+    <ul class="bg-bubbles" style="display:none">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    --->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="opacity: 0;">
+        <symbol id="home" x="0px" y="0px" viewBox="0 0 298.179 298.179" style="enable-background:new 0 0 298.179 298.179;" xml:space="preserve" width="25px" height="25px">
+    <path d="M293.751,150.478L149.965,0.977L4.534,150.41c-6.163,6.333-6.026,16.462,0.307,22.625c3.11,3.027,7.136,4.534,11.158,4.534   c4.167,0,8.165-1.618,11.3-4.841l5.477-5.799v130.273h232V166.861l5.744,5.799c6.127,6.371,16.339,6.567,22.706,0.441   C299.595,166.975,299.876,156.846,293.751,150.478z M148.789,246.024l-17.635-17.688c4.881-4.843,11.257-7.266,17.634-7.266   c6.399,0,12.797,2.438,17.682,7.314L148.789,246.024z M186.758,208.135c-10.142-10.143-23.626-15.729-37.969-15.729   c-14.344,0-27.827,5.586-37.969,15.728l-11.314-11.313c13.163-13.165,30.666-20.415,49.283-20.415   c18.616,0,36.119,7.25,49.283,20.415L186.758,208.135z M217.762,177.128c-18.422-18.424-42.917-28.57-68.973-28.57   c-26.057,0-50.552,10.146-68.976,28.571l-11.315-11.314c21.446-21.446,49.96-33.257,80.29-33.257   c30.329,0,58.843,11.811,80.287,33.258L217.762,177.128z" fill="#FFFFFF"></path>
+  </symbol>
+    </svg>
+
+    <!---<script src="js/index.js"></script>--->
+</main>
+</body>
+<script>
+    var preloader = new GSPreloader({
+        radius:42,
+        dotSize:15,
+        dotCount:10,
+        colors:["#FFFFFF", "#4285F4"], //have as many or as few colors as you want.
+        boxOpacity:0.2,
+        boxBorder:"1px solid #AAA",
+        animationOffset: 0 //jump 1.8 seconds into the animation for a more active part of the spinning initially (just looks a bit better in my opinion)
+    });
+
+    //open the preloader
+    //preloader.active(true);
+
+    //for testing: click the window to toggle open/close the preloader
+    //document.onclick = document.ontouchstart = function() {
+    //  preloader.active( !preloader.active() );
+    //};
+
+    //this is the whole preloader class/function
+    function GSPreloader(options) {
+        options = options || {};
+        var parent = options.parent || document.body,
+                element = this.element = document.createElement("div"),
+                radius = options.radius || 42,
+                dotSize = options.dotSize || 15,
+                animationOffset = options.animationOffset || 1.8, //jumps to a more active part of the animation initially (just looks cooler especially when the preloader isn't displayed for very long)
+                createDot = function(rotation) {
+                    var dot = document.createElement("div");
+                    element.appendChild(dot);
+                    TweenLite.set(dot, {width:dotSize, height:dotSize, transformOrigin:(-radius + "px 0px"), x: radius, backgroundColor:colors[colors.length-1], borderRadius:"50%", force3D:true, position:"absolute", rotation:rotation});
+                    dot.className = options.dotClass || "preloader-dot";
+                    return dot;
+                },
+                i = options.dotCount || 10,
+                rotationIncrement = 360 / i,
+                colors = options.colors || ["#61AC27","black"],
+                animation = new TimelineLite({paused:true}),
+                dots = [],
+                isActive = false,
+                box = document.createElement("div"),
+                tl, dot, closingAnimation, j;
+        colors.push(colors.shift());
+
+        //setup background box
+        TweenLite.set(box, {width: radius * 2 + 70, height: radius * 2 + 70, borderRadius:"14px", backgroundColor:options.boxColor || "white", border: options.boxBorder || "1px solid #AAA", position:"absolute", xPercent:-50, yPercent:-50, opacity:((options.boxOpacity != null) ? options.boxOpacity : 0.3)});
+        box.className = options.boxClass || "preloader-box";
+        element.appendChild(box);
+
+        parent.appendChild(element);
+        TweenLite.set(element, {position:"fixed", top:"45%", left:"50%", perspective:600, overflow:"visible", zIndex:2000});
+        animation.from(box, 0.1, {opacity:0, scale:0.1, ease:Power1.easeOut}, animationOffset);
+        while (--i > -1) {
+            dot = createDot(i * rotationIncrement);
+            dots.unshift(dot);
+            animation.from(dot, 0.1, {scale:0.01, opacity:0, ease:Power1.easeOut}, animationOffset);
+            //tuck the repeating parts of the animation into a nested TimelineMax (the intro shouldn't be repeated)
+            tl = new TimelineMax({repeat:-1, repeatDelay:0.25});
+            for (j = 0; j < colors.length; j++) {
+                tl.to(dot, 2.5, {rotation:"-=360", ease:Power2.easeInOut}, j * 2.9)
+                        .to(dot, 1.2, {skewX:"+=360", backgroundColor:colors[j], ease:Power2.easeInOut}, 1.6 + 2.9 * j);
+            }
+            //stagger its placement into the master timeline
+            animation.add(tl, i * 0.07);
+        }
+        if (TweenLite.render) {
+            TweenLite.render(); //trigger the from() tweens' lazy-rendering (otherwise it'd take one tick to render everything in the beginning state, thus things may flash on the screen for a moment initially). There are other ways around this, but TweenLite.render() is probably the simplest in this case.
+        }
+
+        //call preloader.active(true) to open the preloader, preloader.active(false) to close it, or preloader.active() to get the current state.
+        this.active = function(show) {
+            if (!arguments.length) {
+                return isActive;
+            }
+            if (isActive != show) {
+                isActive = show;
+                if (closingAnimation) {
+                    closingAnimation.kill(); //in case the preloader is made active/inactive/active/inactive really fast and there's still a closing animation running, kill it.
+                }
+                if (isActive) {
+                    element.style.visibility = "visible";
+                    TweenLite.set([element, box], {rotation:0});
+                    animation.play(animationOffset);
+                } else {
+                    closingAnimation = new TimelineLite();
+                    if (animation.time() < animationOffset + 0.3) {
+                        animation.pause();
+                        closingAnimation.to(element, 1, {rotation:-360, ease:Power1.easeInOut}).to(box, 1, {rotation:360, ease:Power1.easeInOut}, 0);
+                    }
+                    closingAnimation.staggerTo(dots, 0.3, {scale:0.01, opacity:0, ease:Power1.easeIn, overwrite:false}, 0.05, 0).to(box, 0.4, {opacity:0, scale:0.2, ease:Power2.easeIn, overwrite:false}, 0).call(function() { animation.pause(); closingAnimation = null; }).set(element, {visibility:"hidden"});
+                }
+            }
+            return this;
+        };
+    }
+    preloader.active(true);
+    $(document).ready(function() {
+        console.log("pagina cargada");
+        preloader.active(false);
+
+        $.getScript("/js/indexMobile.js").done(
+                function(){
+                    listo();
+                    $.getScript("/js/datePicker.js", function(){
+                        queryTime.bootstrapMaterialDatePicker({ date: false, shortTime: true , clearButton: true,cancelText: "Cancelar", clearText:"Limpiar", okText:"Siguiente", format:"HH:mm"});
+                        //queryDays.bootstrapMaterialDatePicker({ weekStart : 0, time: false, shortTime: true, clearButton: true,cancelText: "Cancelar", clearText:"Limpiar" ,okText:"Siguiente"});
+
+                    });
+                });
+        //aqui cargo los archivos de javascript y los estilos CSS sin afectar con la carga inicial de la pagina(probar si se puede con el index.js)
+
+        //inicialización de pickers
+        moment.locale("es");
+    });
+</script>
+</html>

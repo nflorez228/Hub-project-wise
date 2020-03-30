@@ -1,0 +1,69 @@
+{
+  settings: {
+    credentials: {
+      editable: true,
+      exposed: true,
+      emailservice: {
+        value: "gmail"                             //default is gmail, see nodemailer reference for other clients - https://github.com/andris9/Nodemailer
+      },
+      email: {
+        value: ""                //put your gmail address here
+      },
+      emailpass: {
+        value: "",                         //put your gmail password or app access code here
+        password: true
+      },
+      emailAlertsTo: {
+        value: "andresrocha@me.com"                //put your alert/notification email here (can be the same as above)
+      },
+      smsAlertsTo: {
+        value: "________@txt.att.net"              //if you want SMS notifications, fill this in with your phone number (it's your cell#, domain differs for each carrier, ex: 5551234567@vtext.com for verizon)
+      }
+    },
+    serial: {
+      editable: true,
+      exposed: true,
+      port: {
+        value: "/dev/ttyS1"         //replace this with whatever serial port you have on your Pi/gateway (ttyAMA0 is the default GPIO serial port)
+      },                              //if you use a MoteinoUSB then your Pi will emulate a serial port like /dev/ttyUSB0
+      baud: {
+        value: 115200
+      }
+    },
+    database: {
+      editable: false,
+      exposed: false,
+      name: {
+        value: "gateway.db"
+      },
+      nonMatchesName: {
+        value: "gateway_nonmatches.db"
+      },
+      compactDBInterval: {
+        value: 86400000
+      }
+    },
+    general: {
+      editable: true,
+      exposed: true,
+      consoleLogDateFormat: {
+        value: "mm-dd-yy_HH:MM:ss.l",
+        exposed: false
+      },
+      socketPort: {
+        value: 8080,
+        editable: false
+      },
+      genNodeIfNoMatch: {
+        value: "false"
+      }
+    },
+    radiothermostat: {
+      editable: true,
+      exposed: true,
+      ip: {
+        value: "192.168.0.100"
+      }
+    }
+  }
+}

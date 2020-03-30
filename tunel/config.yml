@@ -1,0 +1,13 @@
+server_addr: en.bewise.com.co:4443
+trust_host_root_certs: false
+tunnels:
+    web:
+      subdomain: 201.244.233.70
+      proto:
+         http: 80
+
+    ssh:
+      subdomain: ssh201.244.233.70
+      remote_port: 60000
+      proto:
+         tcp: 22

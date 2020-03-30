@@ -1,0 +1,33 @@
+{
+  "name": "BewiseHUB",
+  "version": "0.1.0",
+  "description": "Bewise main package",
+  "main": "gateway.js",
+  "repository": "private",
+  "author": "Andres Rocha",
+  "homepage": "http://www.bewise.com.co/",
+  "bugs": {
+    "url": "https://gitlab.com/bewise/issues"
+  },
+  "license": "SEE LICENSE IN license.txt",
+  "contributors": "Andres Rocha",
+  "dependencies": {
+    "serialport": "~2.0",
+	"socket.io": "~1.7",
+    "nedb": "~1.8",
+	"nconf": "~0.8",
+    "nodemailer": "~2.7",
+    "console-stamp": "~0.2",
+    "colors": "~1.1",
+    "request": "~2.79",
+    "node-schedule": "latest",
+    "json5": "latest",
+    "python-shell": "latest",
+    "node-gcm": "latest",
+    "socketio-auth": "latest"
+  },
+  "scripts": {
+    "preinstall": "",
+    "start": "node gateway.js"
+  }
+}
